@@ -1,6 +1,6 @@
 # HTML5 Client Side Storage
 
-:break:
+•••
 
 ## Overview
 
