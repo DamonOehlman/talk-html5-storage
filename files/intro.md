@@ -1,6 +1,6 @@
 # HTML5 Client Side Storage
 
-•••
+----
 
 ## Overview
 
@@ -8,7 +8,7 @@ Within the HTML5 spec suite there are a number of options for working with clien
 
 This presentation is an attempt to make things less confusing - for myself mainly :)
 
-:break:
+----
 
 ## Option 1: Web Storage
 
@@ -16,7 +16,7 @@ This is commonly referred to as localStorage.  The [W3C spec](http://www.w3.org/
 
 >   an API for persistent data storage of key-value pair data in Web clients.
 
-:break:
+----
 
 ## Option 2: Web SQL Database
 
@@ -24,7 +24,7 @@ While this is a _deprecated_ standard, it has been implemented (and remains impl
 
 >   an API for storing data in databases that can be queried using a variant of SQL.
 
-:break:
+----
 
 ## Option 3: IndexedDB
 
@@ -34,7 +34,7 @@ IndexedDB is the official replacement for Web SQL, but has nowhere near the inst
 
 um, ok?!
 
-:break:
+----
 
 ## Others
 
@@ -45,7 +45,7 @@ There are a couple of other HTML5 specs that deal with client-side storage:
 
 In general, they are both a bit of a mess and not ready for production (but cool for demos).
 
-:break:
+----
 
 ## Today's Talk
 
