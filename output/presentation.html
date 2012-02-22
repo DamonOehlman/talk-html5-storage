@@ -99,7 +99,7 @@
 <section class="slide" >
 	<h2>Overview</h2>
 
-<p>The Web Storage spec is by far the easiest of the specs we are going to look at in this session.</p>
+<p>The Web Storage spec is by far the easiest of the specs we are going to look at in this session.  Don&#39;t be fooled by the simple interface though, there is a whole lot you can do with it.</p>
 
 
 </section>
@@ -124,10 +124,12 @@ localStorage.test = 'This is a test item';</pre></code>
 <p>Getting data is essentially the opposite:</p>
 
 <pre><code class="javascript">// retrieve test from localStorage
-console.log(localStorage.getItem('test')); // 'This is a test item'
+console.log(localStorage.getItem('test')); 
+// logs: 'This is a test item'
 
 // or just use the accessor
-console.log(localStorage.test); // 'This is a test item'</pre></code>
+console.log(localStorage.test); 
+// logs: 'This is a test item'</pre></code>
 
 
 </section>
@@ -144,10 +146,46 @@ localStorage.activeUser = {
 };
 
 // retrieve the active user from localStorage
-console.log(localStorage.activeUser); // '[object Object]'</pre></code>
+console.log(localStorage.activeUser); 
+// logs: '[object Object]'</pre></code>
 
-<h2>Can I Use Web Storage?</h2>
 
+</section>
+
+<section class="slide" >
+	<h2>JSON to the rescue</h2>
+
+<p>To get around this limitation of the web storage spec, we can simply serialise objects to JSON for storage:</p>
+
+<pre><code class="javascript">// save the active user to local storage
+localStorage.activeUser = JSON.stringify({
+    name: 'Damon Oehlman',
+    id: 'DamonOehlman'
+});
+
+// retrieve the active user from localStorage
+console.log(localStorage.activeUser); 
+// logs: '{ "name": "Damon Oehlman", "id": "DamonOehlman" }'</pre></code>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Can I Use Web Storage?</h2>
+
+<p>Let&#39;s have a look at what the browser support is like for the web storage spec:</p>
+
+<iframe scrolling="no" height="300px" width="100%" src="http://caniuse.com/namevalue-storage/embed/eras=-2,2&agents=desktop,ios_saf,op_mob,android&stats=none"></iframe>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Extension Ideas / Advanced Topics</h2>
+
+<p>As stated earlier, despite it&#39;s simplicity there is a lot that potentially can be done with localStorage:</p>
+
+<ul><li>storing user preferences for a web application client-side</li><li>caching image data for photo galleries or maps, etc.</li><li>implementing intelligent resource loading and caching for scripts / css, etc as an alternative to using <a href="http://dev.w3.org/html5/spec/offline.html">AppCache</a></li></ul>
 
 
 </section>
