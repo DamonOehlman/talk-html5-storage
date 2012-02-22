@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Web Storage 3 Ways</title>
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	<!-- Replace path with correct path to deck.core.css. -->
+	<link rel="stylesheet" href="css/deck.core.css" type="text/css">
+	
+	<!-- Any other extension CSS files go here. -->
+	
+	<!-- Replace path with correct path to Modernizr file. -->
+	<script src="js/modernizr.custom.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="css/swiss.css" /><link rel="stylesheet" type="text/css" href="css/deck.hash.css" /><link rel="stylesheet" type="text/css" href="css/pres.style.css" />
+</head>
+<body class="deck-container">
+
+<!-- use the handlebars each statement to create multiple content sections for the included files -->
+
+<section class="slide" >
+	<h1>HTML5 Client Side Storage</h1>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Overview</h2>
+
+<p>Within the HTML5 spec suite there are a number of options for working with client-side data.  Knowing which one to use, and how to use it can be confusing.</p>
+
+<p>This presentation is an attempt to make things less confusing - for myself mainly :)</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Option 1: Web Storage</h2>
+
+<p>This is commonly referred to as localStorage.  The <a href="http://www.w3.org/TR/webstorage/#storage">W3C spec</a> defines it as:</p>
+
+<blockquote><p>  an API for persistent data storage of key-value pair data in Web clients.</p></blockquote>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Option 2: Web SQL Database</h2>
+
+<p>While this is a <em>deprecated</em> standard, it has been implemented (and remains implemented) in a large number of browsers.  The <a href="http://www.w3.org/TR/webdatabase/">W3C spec</a> defines it as:</p>
+
+<blockquote><p>  an API for storing data in databases that can be queried using a variant of SQL.</p></blockquote>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Option 3: IndexedDB</h2>
+
+<p>IndexedDB is the official replacement for Web SQL, but has nowhere near the installation coverage as it&#39;s predecessor.  The <a href="http://www.w3.org/TR/IndexedDB/">W3C spec</a> defines it as:</p>
+
+<blockquote><p>  APIs for a database of records holding simple values and hierarchical objects. Each record consists of a key and some value. Moreover, the database maintains indexes over records it stores. An application developer directly uses an API to locate records either by their key or by using an index. A query language can be layered on this API. An indexed database can be implemented using a persistent B-tree data structure.</p></blockquote>
+
+<p>um, ok?!</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Others</h2>
+
+<p>There are a couple of other HTML5 specs that deal with client-side storage:</p>
+
+<ul><li><a href="http://www.w3.org/TR/FileAPI/">File API</a></li><li><a href="http://www.w3.org/TR/file-system-api/">File API: Directories and System</a></li></ul>
+
+<p>In general, they are both a bit of a mess and not ready for production (but cool for demos).</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Today&#39;s Talk</h2>
+
+<p>Today we are going to be focusing on the first three client side storage options outlined, covering:</p>
+
+<ul><li>presenting simple usage examples</li><li>some potential use cases</li><li>pros and cons</li><li>production readiness</li></ul>
+
+<p>We won&#39;t be covering cookies in the context of this talk, but they are still an option should you wish to use them. <strong>Personally, I would rather not.</strong></p>
+
+
+</section>
+
+<section class="slide" >
+	<h1>Web Storage</h1>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Overview</h2>
+
+<p>The Web Storage spec is by far the easiest of the specs we are going to look at in this session.</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Saving Data</h2>
+
+<p>Saving data is a very simple operation and can be performed by calling the <code>setItem</code> method of the <code>localStorage</code> object:</p>
+
+<pre><code class="javascript">// save a string to localStorage
+localStorage.setItem('test', 'This is a test item');
+
+// and this code is equivalent
+localStorage.test = 'This is a test item';</pre></code>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Getting Data</h2>
+
+<p>Getting data is essentially the opposite:</p>
+
+<pre><code class="javascript">// retrieve test from localStorage
+console.log(localStorage.getItem('test')); // 'This is a test item'
+
+// or just use the accessor
+console.log(localStorage.test); // 'This is a test item'</pre></code>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Strings Only Please</h2>
+
+<p>The <code>localStorage</code> interface is presently designed to store strings only.  For example, consider the following code:</p>
+
+<pre><code class="javascript">// save the active user to local storage
+localStorage.activeUser = {
+    name: 'Damon Oehlman',
+    id: 'DamonOehlman'
+};
+
+// retrieve the active user from localStorage
+console.log(localStorage.activeUser); // '[object Object]'</pre></code>
+
+<h2>Can I Use Web Storage?</h2>
+
+
+
+</section>
+
+<section class="slide" >
+	<h1>Web SQL Database</h1>
+
+
+</section>
+
+<section class="slide" >
+	<h1>IndexedDB</h1>
+
+
+</section>
+
+	
+<!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+
+<!-- Update these paths to point to the correct files. -->
+<script src="js/jquery.min.js"></script>
+<script src="js/deck.core.js"></script>
+
+<!-- Add any other extension JS files here -->
+
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+<script src="js/deck.hash.js"></script><script src="js/highlight.js"></script><script>hljs.initHighlightingOnLoad();</script><link rel="stylesheet" type="text/css" href="css/highlight.default.css" /><script src="js/highlight-javascript.js"></script>
+</body>
+</html>

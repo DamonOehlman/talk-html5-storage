@@ -1,0 +1,13 @@
+.deck-container .slide blockquote {
+    font-size: 1.25em;
+    line-height: 1.4em;
+    color: #333;
+}
+
+.deck-container .slide pre {
+    padding: 0px;
+}
+
+.deck-container .slide pre code {
+    padding: 20px;
+}

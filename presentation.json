@@ -1,0 +1,33 @@
+{
+    "title": "Web Storage 3 Ways",
+    "template": "github://DamonOehlman/packing-instructions/deck.js",
+    "sources": [
+        "files/intro.md",
+        "files/webstorage.md",
+        "files/websql.md",
+        "files/indexeddb.md"
+    ],
+    
+    "includes": {
+        "head": [
+            "css/swiss.css",
+            "css/deck.hash.css",
+            "css/pres.style.css"
+        ],
+        
+        "body": [
+            "js/deck.hash.js"
+        ]
+    },
+    
+    "aliases": {
+        "deck": "github://imakewebthings/deck.js"
+    },
+    
+    "resources": [
+        "css/swiss.css <= deck!themes/style/swiss.css",
+        "css/deck.hash.css <= deck!extensions/hash/deck.hash.css",
+        "css/pres.style.css <= resources/css/pres.style.css",
+        "js/deck.hash.js <= deck!extensions/hash/deck.hash.js"
+    ]
+}

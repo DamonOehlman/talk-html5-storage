@@ -1,0 +1,23 @@
+{
+  "name": "talk-html5-storage",
+  "description": "This is a high level talk on HTML5 storage",
+  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
+  "tags": [ "html5" ],
+  "version": "0.0.1",
+  "private": "true",
+
+  "devDependencies": {
+    "markdown": "*",
+    "jade": "*"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DamonOehlman/talk-html5-storage.git"
+  },
+  "bugs": {
+    "url": "http://github.com/DamonOehlman/talk-html5-storage/issues"
+  },
+  
+  "contributors": []
+}
