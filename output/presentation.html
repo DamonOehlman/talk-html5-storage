@@ -99,7 +99,9 @@
 <section class="slide" >
 	<h2>Overview</h2>
 
-<p>The Web Storage spec is by far the easiest of the specs we are going to look at in this session.  Don&#39;t be fooled by the simple interface though, there is a whole lot you can do with it.</p>
+<p>The Web Storage spec is by far the easiest of the specs we are going to look at in this session.  </p>
+
+<p><em>Don&#39;t be fooled by the simple interface though, there is a whole lot you can do with it.</em></p>
 
 
 </section>
@@ -109,11 +111,11 @@
 
 <p>Saving data is a very simple operation and can be performed by calling the <code>setItem</code> method of the <code>localStorage</code> object:</p>
 
-<pre><code class="javascript">// save a string to localStorage
-localStorage.setItem('test', 'This is a test item');
+<pre><code class="javascript">localStorage.setItem('test', 'This is a test item');</pre></code>
 
-// and this code is equivalent
-localStorage.test = 'This is a test item';</pre></code>
+<p>Or you can use a JS setter syntax:</p>
+
+<pre><code class="javascript">localStorage.test = 'This is a test item';</pre></code>
 
 
 </section>
@@ -121,15 +123,15 @@ localStorage.test = 'This is a test item';</pre></code>
 <section class="slide" >
 	<h2>Getting Data</h2>
 
-<p>Getting data is essentially the opposite:</p>
+<p>Getting data is essentially the opposite, and available through the <code>getItem</code> method:</p>
 
-<pre><code class="javascript">// retrieve test from localStorage
-console.log(localStorage.getItem('test')); 
-// logs: 'This is a test item'
+<pre><code class="javascript">console.log(localStorage.getItem('test'));
+// OUTPUT: 'This is a test item'</pre></code>
 
-// or just use the accessor
-console.log(localStorage.test); 
-// logs: 'This is a test item'</pre></code>
+<p>Or a getter:</p>
+
+<pre><code class="javascript">console.log(localStorage.test);
+// OUTPUT: 'This is a test item'</pre></code>
 
 
 </section>
@@ -147,7 +149,7 @@ localStorage.activeUser = {
 
 // retrieve the active user from localStorage
 console.log(localStorage.activeUser); 
-// logs: '[object Object]'</pre></code>
+// OUTPUT: '[object Object]'</pre></code>
 
 
 </section>
@@ -165,7 +167,65 @@ localStorage.activeUser = JSON.stringify({
 
 // retrieve the active user from localStorage
 console.log(localStorage.activeUser); 
-// logs: '{ "name": "Damon Oehlman", "id": "DamonOehlman" }'</pre></code>
+// OUTPUT: '{ "name": "Damon Oehlman", "id": "DamonOehlman" }'</pre></code>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Iterating through Storage</h2>
+
+<p>You can iterate through <code>localStorage</code> just like you would other JS objects:</p>
+
+<pre><code class="javascript">for (var key in localStorage) {
+    console.log(localStorage[key]);
+}</pre></code>
+
+<p><strong>OR</strong></p>
+
+<pre><code class="javascript">Object.keys(localStorage).forEach(function(key) {
+    console.log(localStorage[key]);
+});</pre></code>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Cleaning up Storage</h2>
+
+<p>You can remove items using the <code>removeItem</code> function:</p>
+
+<pre><code class="javascript">localStorage.removeItem('test');</pre></code>
+
+<p>Or, by deleting the reference Javascript style:</p>
+
+<pre><code class="javascript">delete localStorage.test;</pre></code>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Storage Events</h2>
+
+<p>The Web Storage spec also outlines a special <code>storage</code> event which can be used to listen for storage changes as they occur:</p>
+
+<pre><code class="javascript">window.addEventListener('storage', function(evt) {
+    console.log('The value of the ' + evt.key + ' has changed');
+    console.log('old value = ' + evt.oldValue);
+    console.log('new value = ' + evt.newValue);
+}, false);</pre></code>
+
+<p><strong>NOTE:</strong> In the majority of browser implementations, these events are not fired for the browser context (window, tab, etc) that made the storage change, just other contexts that share the storage.</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>It doesn&#39;t stop at localStorage</h2>
+
+<p>In addition to the <code>localStorage</code> object we also have a <code>sessionStorage</code> object that we can play around with also.  Session storage provides a storage container that persists only for the duration of the user session. </p>
+
+<p><a href="http://www.nczonline.net/blog/2009/07/21/introduction-to-sessionstorage/">More Information</a></p>
 
 
 </section>
@@ -181,11 +241,47 @@ console.log(localStorage.activeUser);
 </section>
 
 <section class="slide" >
-	<h2>Extension Ideas / Advanced Topics</h2>
+	<h2>Things to Consider: Security</h2>
 
-<p>As stated earlier, despite it&#39;s simplicity there is a lot that potentially can be done with localStorage:</p>
+<p>Use of Web Storage objects are regulated by the <a href="https://developer.mozilla.org/en/Same_origin_policy_for_JavaScript)">same origin policy</a>.</p>
 
-<ul><li>storing user preferences for a web application client-side</li><li>caching image data for photo galleries or maps, etc.</li><li>implementing intelligent resource loading and caching for scripts / css, etc as an alternative to using <a href="http://dev.w3.org/html5/spec/offline.html">AppCache</a></li></ul>
+<p>What does this mean?  </p>
+
+<p>Basically, if two pages reside on hosts that <strong>exactly match</strong> then they will be using the same storage container (e.g. http://one.test.com/ and http://one.test.com/about will share storage).  </p>
+
+<p>If the hosts, ports, or protocols (HTTP vs HTTPS) are different though, the storage containers will be different. (e.g. http://one.test.com/ and http://two.test.com/ do <strong>not</strong> share storage).</p>
+
+<p><em>I need to do more research in this area though</em></p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Things to Consider: Quota</h2>
+
+<p>It&#39;s important to remember that browser vendors <em>generally</em> like to protect their users, and for this reason some sensible limits are placed on how much data can be injected into Web Storage containers.</p>
+
+<p>Typically this is about 5Mb, but due to the way strings in JS are stored in memory it is actually around 2.5Mb of string data.</p>
+
+<p>It also varies from device to device, browser to browser.</p>
+
+<p><a href="http://dev-test.nemikor.com/web-storage/support-test/">More information and a Test Suite</a></p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Potential Use Cases</h2>
+
+<ul><li>Storing user preferences for a web application client-side.</li><li>Caching image data for photo galleries or maps, etc.</li><li><p>Implementing intelligent resource loading and caching for scripts / css, etc as an alternative to using <a href="http://dev.w3.org/html5/spec/offline.html">HTML5 offline storage / AppCache</a>.</p><p>This is something I&#39;m planning to <a href="https://github.com/DamonOehlman/localo">investigate</a>.</p></li></ul>
+
+
+</section>
+
+<section class="slide" >
+	<h2>More Information</h2>
+
+<ul><li><p><a href="http://hacks.mozilla.org/2012/02/saving-images-and-files-in-localstorage/">Saving images and files in localStorage</a></p></li><li><p><a href="http://client-side-storage.appspot.com/">Client-side Storage Presentation</a> by <a href="http://twitter.com/pamelafox">Pamela Fox</a> - contains some great real world examples of where localStorage is being used.</p></li></ul>
 
 
 </section>
@@ -197,7 +293,121 @@ console.log(localStorage.activeUser);
 </section>
 
 <section class="slide" >
+	<h2>Overview</h2>
+
+<p><strong>WebSQL is dead! Long live WebSQL!</strong></p>
+
+<p>As mentioned earlier, the <a href="http://www.w3.org/TR/webdatabase/">Web SQL Database</a> spec has been <em>deprecated</em> by the W3C and is no longer part of the HTML5 spec.  </p>
+
+<p>It is, however, implemented in a variety of modern browsers and still remains a valid choice for client-side storage (especially on mobile devices).</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Overview (cont.)</h2>
+
+<p>While WebSQL is a powerful spec, IMO it is not a good fit for the browser environment.  So I&#39;m glad that the W3C recommend <strong>against</strong> using it.  </p>
+
+<p>As WebSQL has been deprecated, and is a pretty dry spec, I&#39;ll keep this section short.</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Opening a Database</h2>
+
+<p>When working with WebSQL we need to open a database before we can use it.  This is done through the <code>openDatabase</code> function.</p>
+
+<pre><code class="javascript">// open/create a database for the application (expected size ~ 100K)
+var db = openDatabase(
+    'todolist',             // database id
+    '1.0',                  // database version 
+    'To Do List Database',  // database title
+    100 * 1024,             // expected size in bytes
+    initDB                  // run when a db is created (see next slide)
+);</pre></code>
+
+
+</section>
+
+<section class="slide" >
+	<h2>On Database Creation</h2>
+
+<p>When a database is created (didn&#39;t exist prior to the <code>openDatabase</code> call) an initialization function will be called.</p>
+
+<p>Use this to initialize your DB to the <code>1.0</code> version:</p>
+
+<pre><code class="javascript">function initDB(db) {
+    // initialise the database version
+    db.changeVersion('', '1.0', function (t) {
+        t.executeSql(
+            'CREATE TABLE task(name TEXT NOT NULL, ' +
+            '  description TEXT, ' + 
+            '  due DATETIME);'
+        );
+    });
+}</pre></code>
+
+
+</section>
+
+<section class="slide" data-bg="../img/1152142_76778553.jpg"data-attribution="http://www.sxc.hu/photo/1152142">
+	<h1>So Bored!</h1>
+
+
+</section>
+
+<section class="slide" >
+	<h2>WebSQL target audience</h2>
+
+<p>I could go on to show you retrieving records, updating data, etc, etc. but in truth I&#39;d probably fall asleep just talking about it.</p>
+
+<p>If you are interested in WebSQL though, then feel free to hit me up afterwards and we can chat :)</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Can I Use WebSQL?</h2>
+
+<iframe scrolling="no" height="300px" width="100%" src="http://caniuse.com/sql-storage/embed/eras=-2,2&agents=desktop,ios_saf,op_mob,android&stats=none"></iframe>
+
+<p>So on some browsers, yes, but the question is - <strong>do you really want to</strong>?</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Further Reading</h2>
+
+<ul><li><p><a href="http://html5doctor.com/introducing-web-sql-databases/">html5doctor: Introducing Web SQL Databases</a></p></li><li><p><a href="http://www.html5rocks.com/en/tutorials/webdatabase/websql-indexeddb/">html5rocks: Migrating Your WebSQL DB to IndexedDB</a></p></li></ul>
+
+
+</section>
+
+<section class="slide" >
 	<h1>IndexedDB</h1>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Overview</h2>
+
+<p>The <a href="http://www.w3.org/TR/IndexedDB/">Indexed Database API</a> is a great looking spec.  While it&#39;s still early days at the moment, the approach shows a lot of promise for working with larger client side datasets.</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Can I Use IndexedDB</h2>
+
+<iframe scrolling="no" height="300px" width="100%" src="http://caniuse.com/indexeddb/embed/eras=-2,2&agents=desktop,ios_saf,op_mob,android&stats=none"></iframe>
+
+<p><strong>Desktop browsers</strong>: maybe, if your apps are experimental or for a narrow audience.</p>
+
+<p><strong>Mobile browsers</strong>:  Um, no :(</p>
 
 
 </section>
@@ -218,6 +428,6 @@ console.log(localStorage.activeUser);
 		$.deck('.slide');
 	});
 </script>
-<script src="js/deck.hash.js"></script><script src="js/highlight.js"></script><script>hljs.initHighlightingOnLoad();</script><link rel="stylesheet" type="text/css" href="css/highlight.default.css" /><script src="js/highlight-javascript.js"></script>
+<script src="js/deck.hash.js"></script><script src="js/pres.js"></script><script src="js/highlight.js"></script><script>hljs.initHighlightingOnLoad();</script><link rel="stylesheet" type="text/css" href="css/highlight.default.css" /><script src="js/highlight-javascript.js"></script>
 </body>
 </html>

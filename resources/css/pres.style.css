@@ -10,4 +10,16 @@
 
 .deck-container .slide pre code {
     padding: 20px;
+    color: black;
+}
+
+.slide[data-bg] {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.slide[data-bg] h1 {
+    color: white;
+    text-shadow: #333 2px 2px 5px;
 }

@@ -16,7 +16,8 @@
         ],
         
         "body": [
-            "js/deck.hash.js"
+            "js/deck.hash.js",
+            "js/pres.js"
         ]
     },
     
@@ -28,6 +29,7 @@
         "css/swiss.css <= deck!themes/style/swiss.css",
         "css/deck.hash.css <= deck!extensions/hash/deck.hash.css",
         "css/pres.style.css <= resources/css/pres.style.css",
-        "js/deck.hash.js <= deck!extensions/hash/deck.hash.js"
+        "js/deck.hash.js <= deck!extensions/hash/deck.hash.js",
+        "js/pres.js <= resources/js/pres.js"
     ]
 }

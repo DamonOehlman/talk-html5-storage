@@ -1,0 +1,1 @@
+delete localStorage.test;

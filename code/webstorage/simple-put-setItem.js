@@ -1,0 +1,1 @@
+localStorage.setItem('test', 'This is a test item');

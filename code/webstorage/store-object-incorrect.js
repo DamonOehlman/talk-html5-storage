@@ -6,4 +6,4 @@ localStorage.activeUser = {
 
 // retrieve the active user from localStorage
 console.log(localStorage.activeUser); 
-// logs: '[object Object]'
+// OUTPUT: '[object Object]'

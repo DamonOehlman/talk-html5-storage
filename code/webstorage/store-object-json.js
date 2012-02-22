@@ -6,4 +6,4 @@ localStorage.activeUser = JSON.stringify({
 
 // retrieve the active user from localStorage
 console.log(localStorage.activeUser); 
-// logs: '{ "name": "Damon Oehlman", "id": "DamonOehlman" }'
+// OUTPUT: '{ "name": "Damon Oehlman", "id": "DamonOehlman" }'
