@@ -5,7 +5,9 @@
         "files/intro.md",
         "files/webstorage.md",
         "files/websql.md",
-        "files/indexeddb.md"
+        "files/indexeddb.md",
+        "files/wrappers.md",
+        "files/art.md"
     ],
     
     "includes": {

@@ -1,4 +1,4 @@
-# HTML5 Client Side Storage
+# The Art of HTML5 Storage
 
 ----
 

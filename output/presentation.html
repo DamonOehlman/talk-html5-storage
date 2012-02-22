@@ -19,7 +19,7 @@
 <!-- use the handlebars each statement to create multiple content sections for the included files -->
 
 <section class="slide" >
-	<h1>HTML5 Client Side Storage</h1>
+	<h1>The Art of HTML5 Storage</h1>
 
 
 </section>
@@ -379,9 +379,11 @@ var db = openDatabase(
 </section>
 
 <section class="slide" >
-	<h2>Further Reading</h2>
+	<h2>More Information</h2>
 
-<ul><li><p><a href="http://html5doctor.com/introducing-web-sql-databases/">html5doctor: Introducing Web SQL Databases</a></p></li><li><p><a href="http://www.html5rocks.com/en/tutorials/webdatabase/websql-indexeddb/">html5rocks: Migrating Your WebSQL DB to IndexedDB</a></p></li></ul>
+<p>More information (should you want to know) can be found on WebSQL in the following articles:</p>
+
+<ul><li><p><a href="http://html5doctor.com/introducing-web-sql-databases/">Introducing Web SQL Databases</a></p></li><li><p><a href="http://www.html5rocks.com/en/tutorials/webdatabase/websql-indexeddb/">Migrating Your WebSQL DB to IndexedDB</a></p></li></ul>
 
 
 </section>
@@ -397,6 +399,103 @@ var db = openDatabase(
 
 <p>The <a href="http://www.w3.org/TR/IndexedDB/">Indexed Database API</a> is a great looking spec.  While it&#39;s still early days at the moment, the approach shows a lot of promise for working with larger client side datasets.</p>
 
+<p>It is more complicated to work with than the Web Storage APIs (it&#39;s asynchronous for a start) but definitely not as painful as WebSQL.</p>
+
+<p><em>Examples for this section are modified from an excellent <a href="http://www.html5rocks.com/">html5rocks.com</a> article:</em></p>
+
+<p><em><a href="http://www.html5rocks.com/en/tutorials/indexeddb/todo/">A Simple ToDo list using HTML5 IndexedDB</a></em></p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Opening a DB</h2>
+
+<p>Opening a database is reasonably simple, and is done through making an open database request:</p>
+
+<pre><code class="javascript">// create a database open request
+var request = indexedDB.open('todolist'),
+    db;
+
+request.onsuccess = function(e) {
+    // update the database reference
+    db = e.target.result;
+    console.log('successfully opened db: ' + db.name);
+};
+
+request.onfailure = function(e) {}; // TODO: handle errors</pre></code>
+
+<p><strong>NOTE:</strong> While not shown in the example above, the reference to <code>indexedDB</code> has been mapped from a vendor prefixed version of IndexedDB.  Depending on your browser it will be one of <code>webkitIndexedDB</code>, <code>mozIndexedDB</code>, <code>oIndexedDB</code> or <code>msIndexedDB</code>.</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Creating an Object Store</h2>
+
+<p>While opening the database was simple enough, things start to go downhill a little from here.  Before we can add objects to our database we need to create an object store using a <code>db.createObjectStore</code> call.</p>
+
+<p>Additionally, creating the object store can only be done in the context of a <code>setVersion</code> request.  The following is a simplified version of what is usually required:</p>
+
+<pre><code class="javascript">request.onsuccess = function(e) {
+    var setVrequest = db.setVersion('1.0');
+
+    setVrequest.onsuccess = function() {
+        var store = db.createObjectStore(
+                'todo', // title of the object store
+                { keyPath: 'timeStamp' }
+        );
+    };
+};</pre></code>
+
+
+</section>
+
+<section class="slide" data-bg="../img/468245_79094304.jpg"data-attribution="http://www.sxc.hu/photo/468245">
+	<h1>Worth the Climb?</h1>
+
+
+</section>
+
+<section class="slide" >
+	<h1>Yes - but I&#39;ll spare you the boring bits.</h1>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Putting Objects in the Store</h2>
+
+<p>Eventually, after a few more calls to <code>transaction</code> and <code>objectStore</code> functions you can start to put things into your object store:</p>
+
+<pre><code class="javascript">// we have a reference to store from some previous heavy lifting
+// so now put something in the store
+var request = store.put({
+    text: 'Write a nice wrapper to IndexedDB',
+    timeStamp: new Date().getTime()
+});
+
+request.onsuccess = function(e) {
+    // item added
+};</pre></code>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Retrieving Objects from the Store</h2>
+
+<p>Retrieving objects from an object store can be very simple.  If you are using it like the Web Storage API, a store supports <code>get</code> calls for retrieving an item matching the provided key value:</p>
+
+<pre><code class="javascript">// given we know the timestap of a todo, we can retrieve it
+var request = store.get(todoTimestamp);
+
+request.onsuccess = function(e) {
+    // item retrieved
+};</pre></code>
+
+<p>Iterating over the contents of the store requires a <a href="http://www.w3.org/TR/IndexedDB/#cursor-concept">cursor</a> which is something I won&#39;t be touching on tonight. </p>
+
 
 </section>
 
@@ -408,6 +507,134 @@ var db = openDatabase(
 <p><strong>Desktop browsers</strong>: maybe, if your apps are experimental or for a narrow audience.</p>
 
 <p><strong>Mobile browsers</strong>:  Um, no :(</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>More Information</h2>
+
+<p>More information on IndexedDB can be found at the following locations:</p>
+
+<ul><li><p><a href="http://www.html5rocks.com/en/tutorials/indexeddb/todo/">A Simple ToDo List using HTML5 IndexedDB</a></p></li><li><p><a href="https://developer.mozilla.org/en/IndexedDB/Using_IndexedDB">Using IndexedDB</a></p></li><li><p><a href="https://developer.mozilla.org/en/IndexedDB/Basic_Concepts_Behind_IndexedDB">Basic Concepts Behind IndexedDB</a></p></li></ul>
+
+
+</section>
+
+<section class="slide" >
+	<h1>Wrapper Libraries</h1>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Overview</h2>
+
+<p>If you felt a little overwhelmed by the different specs, then you are not alone and thankfully some kind developers are making an effort to make all of these APIs simpler to work with.</p>
+
+<p>Each of the APIs takes a slightly different approach and/or serves a different purpose.</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Lawnchair</h2>
+
+<p><a href="http://twitter.com/brianleroux">Brian LeRoux&#39;s</a> <a href="http://westcoastlogic.com/lawnchair/">lawnchair project</a> does a great job at providing a common interface to all of the storage APIs covered today (and more).</p>
+
+<p>It has a genuinely simple interface and getting started with it is a breeze:</p>
+
+<pre><code class="javascript">// yes, this is @brianleroux's example
+new Lawnchair(function() {
+    this.save({me:'brian'});
+});</pre></code>
+
+<p>Well worth checking out.</p>
+
+<p><a href="http://brianleroux.github.com/lawnchair">Project Page</a></p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Sticky</h2>
+
+<p><a href="https://github.com/alexmng/sticky">Sticky</a> is brought to us by <a href="https://github.com/alexmng">Alex Mingoia</a> and provides a unified Web Storage like interface to the storage APIs covered today.</p>
+
+<p>Like lawnchair it is very simple to use:</p>
+
+<pre><code class="javascript">var store = new StickyStore();
+
+store.set('color', 'red');
+store.get('color');
+store.remove('color');</pre></code>
+
+<p><a href="https://github.com/alexmng/sticky">Project Page</a></p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>lscache</h2>
+
+<p>The last of the wrapper projects that will be looked at today is from <a href="http://twitter.com/pamelafox">Pamela Fox</a> and focuses on providing a really useful interface for caching using localStorage.</p>
+
+<p>By default, when items are placed into localStorage they remain there until they are programmatically removed or storage is cleared by the user.  Pamela&#39;s <a href="https://github.com/pamelafox/lscache">lscache</a> makes it easy to have a value persist for a fixed amount of time:</p>
+
+<pre><code class="javascript">// store a greeting for two minutes
+lscache.set('greeting', 'Hello World!', 2);</pre></code>
+
+<p><a href="https://github.com/pamelafox/lscache">Project Page</a></p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>On Art and HTML5 Storage</h2>
+
+<p>I titled this talk <strong>the art of HTML5 storage</strong> because after going back through technologies like Web Storage and Web SQL, and becoming familiar with new standards such as IndexedDB I could see a parallel with different types of art.</p>
+
+<p><strong>NOTE:</strong> I quick to remind people I&#39;m a not an expert at anything.  </p>
+
+<p><em>This is <strong>especially</strong> true when it comes to art - I genuinely know nothing, so please take this analogy with a grain of salt ;)</em></p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Web Storage</h2>
+
+<p>The Web Storage API feels simple and accessible.  It is something that can generally be appreciated by all, even though some will turn their nose up at it.</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>Web SQL</h2>
+
+<p>The Web SQL standard is something that some of use thought was a good idea at the time, but looking back is something that we know was a bit of a mistake.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Hypercolor">Hypercolor</a> t-shirts anyone?</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>IndexedDB</h2>
+
+<p>IndexedDB is a new exploratory area which in it&#39;s current form is not going to be everyone&#39;s tastes.  I find myself looking at it&#39;s implementation in a similar way I feel confused by more progressive impressionist artists (such as <a href="http://en.wikipedia.org/wiki/Picasso)">Picasso</a> works.</p>
+
+<p>Though I expect that more accessible implementations / wrappers will start to appear.</p>
+
+
+</section>
+
+<section class="slide" >
+	<h2>In Summary</h2>
+
+<p>I&#39;d generally recommend exploring the Web Storage API given its strong implementation across modern browsers, and look at how it can be used to improve the speed / usability of your applications and sites.</p>
+
+<p>IndexedDB is something to keep an eye on, but requires broader browser support (which requires specification maturity) and some helpful wrapper libraries to make it genuinely appealing.</p>
 
 
 </section>

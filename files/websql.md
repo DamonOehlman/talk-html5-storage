@@ -60,8 +60,10 @@ So on some browsers, yes, but the question is - __do you really want to__?
 
 ---
 
-## Further Reading
+## More Information
 
-- [html5doctor: Introducing Web SQL Databases](http://html5doctor.com/introducing-web-sql-databases/)
+More information (should you want to know) can be found on WebSQL in the following articles:
 
-- [html5rocks: Migrating Your WebSQL DB to IndexedDB](http://www.html5rocks.com/en/tutorials/webdatabase/websql-indexeddb/)
+- [Introducing Web SQL Databases](http://html5doctor.com/introducing-web-sql-databases/)
+
+- [Migrating Your WebSQL DB to IndexedDB](http://www.html5rocks.com/en/tutorials/webdatabase/websql-indexeddb/)
