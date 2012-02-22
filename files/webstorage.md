@@ -1,12 +1,12 @@
 # Web Storage
 
-...
+~~b
 
 ## Overview
 
 The Web Storage spec is by far the easiest of the specs we are going to look at in this session.  Don't be fooled by the simple interface though, there is a whole lot you can do with it.
 
-...
+~~b
 
 ## Saving Data
 
@@ -14,7 +14,7 @@ Saving data is a very simple operation and can be performed by calling the `setI
 
 [[code code/webstorage/simple-put.js]]
 
-...
+~~b
 
 ## Getting Data
 
@@ -22,7 +22,7 @@ Getting data is essentially the opposite:
 
 [[code code/webstorage/simple-get.js]]
 
-...
+~~b
 
 ## Strings Only Please
 
@@ -30,7 +30,7 @@ The `localStorage` interface is presently designed to store strings only.  For e
 
 [[code code/webstorage/store-object-incorrect.js]]
 
-...
+~~b
 
 ## JSON to the rescue
 
@@ -38,7 +38,7 @@ To get around this limitation of the web storage spec, we can simply serialise o
 
 [[code code/webstorage/store-object-json.js]]
 
-...
+~~b
 
 ## Can I Use Web Storage?
 
@@ -46,7 +46,7 @@ Let's have a look at what the browser support is like for the web storage spec:
 
 [[caniuse namevalue-storage]]
 
-...
+~~b
 
 ## Extension Ideas / Advanced Topics
 
