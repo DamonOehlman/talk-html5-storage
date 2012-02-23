@@ -1,6 +1,6 @@
 {
     "title": "The Art of HTML5 Storage",
-    "template": "/development/projects/DamonOehlman/packing-instructions/portable",
+    "template": "github://DamonOehlman/packing-instructions/portable",
     "sources": [
         "files/intro.md",
         "files/webstorage.md",
@@ -38,6 +38,7 @@
         "css/deck.hash.css <= deck!extensions/hash/deck.hash.css",
         "css/pres.style.css <= resources/css/pres.style.css",
         "js/deck.hash.js <= deck!extensions/hash/deck.hash.js",
-        "js/pres.js <= resources/js/pres.js"
+        "js/pres.js <= resources/js/pres.js",
+        "js/jquery.min.js <= http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
     ]
 }
