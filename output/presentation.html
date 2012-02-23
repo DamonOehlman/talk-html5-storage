@@ -2,39 +2,31 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Web Storage 3 Ways</title>
-	<meta name="viewport" content="width=1024, user-scalable=no">
-	<!-- Replace path with correct path to deck.core.css. -->
-	<link rel="stylesheet" href="css/deck.core.css" type="text/css">
-	
-	<!-- Any other extension CSS files go here. -->
-	
-	<!-- Replace path with correct path to Modernizr file. -->
-	<script src="js/modernizr.custom.js"></script>
-	
-	<link rel="stylesheet" type="text/css" href="css/swiss.css" /><link rel="stylesheet" type="text/css" href="css/deck.hash.css" /><link rel="stylesheet" type="text/css" href="css/pres.style.css" />
+	<title>The Art of HTML5 Storage</title>
+	<meta name="viewport" content="width=device-width;">
+	<link rel="stylesheet" href="css/portable.css" type="text/css">
+	<link rel="stylesheet" href="css/theme-dark.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/pres.style.css" />
 </head>
-<body class="deck-container">
+<body class="portable">
 
-<!-- use the handlebars each statement to create multiple content sections for the included files -->
-
-<section class="slide" >
+<section >
 	<h1>The Art of HTML5 Storage</h1>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Overview</h2>
 
 <p>Within the HTML5 spec suite there are a number of options for working with client-side data.  Knowing which one to use, and how to use it can be confusing.</p>
 
-<p>This presentation is an attempt to make things less confusing - for myself mainly :)</p>
+<p>This presentation is an attempt to make things less confusing.</p>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Option 1: Web Storage</h2>
 
 <p>This is commonly referred to as localStorage.  The <a href="http://www.w3.org/TR/webstorage/#storage">W3C spec</a> defines it as:</p>
@@ -44,7 +36,7 @@
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Option 2: Web SQL Database</h2>
 
 <p>While this is a <em>deprecated</em> standard, it has been implemented (and remains implemented) in a large number of browsers.  The <a href="http://www.w3.org/TR/webdatabase/">W3C spec</a> defines it as:</p>
@@ -54,7 +46,7 @@
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Option 3: IndexedDB</h2>
 
 <p>IndexedDB is the official replacement for Web SQL, but has nowhere near the installation coverage as it&#39;s predecessor.  The <a href="http://www.w3.org/TR/IndexedDB/">W3C spec</a> defines it as:</p>
@@ -66,7 +58,7 @@
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Others</h2>
 
 <p>There are a couple of other HTML5 specs that deal with client-side storage:</p>
@@ -78,25 +70,25 @@
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Today&#39;s Talk</h2>
 
 <p>Today we are going to be focusing on the first three client side storage options outlined, covering:</p>
 
-<ul><li>presenting simple usage examples</li><li>some potential use cases</li><li>pros and cons</li><li>production readiness</li></ul>
+<ul><li>presenting simple usage examples</li><li>some potential use cases</li><li>API production readiness</li></ul>
 
 <p>We won&#39;t be covering cookies in the context of this talk, but they are still an option should you wish to use them. <strong>Personally, I would rather not.</strong></p>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h1>Web Storage</h1>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Overview</h2>
 
 <p>The Web Storage spec is by far the easiest of the specs we are going to look at in this session.  </p>
@@ -106,7 +98,7 @@
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Saving Data</h2>
 
 <p>Saving data is a very simple operation and can be performed by calling the <code>setItem</code> method of the <code>localStorage</code> object:</p>
@@ -120,7 +112,7 @@
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Getting Data</h2>
 
 <p>Getting data is essentially the opposite, and available through the <code>getItem</code> method:</p>
@@ -136,7 +128,7 @@
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Strings Only Please</h2>
 
 <p>The <code>localStorage</code> interface is presently designed to store strings only.  For example, consider the following code:</p>
@@ -154,7 +146,7 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>JSON to the rescue</h2>
 
 <p>To get around this limitation of the web storage spec, we can simply serialise objects to JSON for storage:</p>
@@ -172,7 +164,7 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Iterating through Storage</h2>
 
 <p>You can iterate through <code>localStorage</code> just like you would other JS objects:</p>
@@ -190,7 +182,7 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Cleaning up Storage</h2>
 
 <p>You can remove items using the <code>removeItem</code> function:</p>
@@ -204,7 +196,7 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Storage Events</h2>
 
 <p>The Web Storage spec also outlines a special <code>storage</code> event which can be used to listen for storage changes as they occur:</p>
@@ -220,7 +212,7 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>It doesn&#39;t stop at localStorage</h2>
 
 <p>In addition to the <code>localStorage</code> object we also have a <code>sessionStorage</code> object that we can play around with also.  Session storage provides a storage container that persists only for the duration of the user session. </p>
@@ -230,17 +222,19 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Can I Use Web Storage?</h2>
 
-<p>Let&#39;s have a look at what the browser support is like for the web storage spec:</p>
+<p>Let&#39;s have a look at what the <a href="http://caniuse.com/#feat=namevalue-storage">browser support</a> is like for the web storage spec:</p>
 
-<iframe scrolling="no" height="300px" width="100%" src="http://caniuse.com/namevalue-storage/embed/eras=-2,2&agents=desktop,ios_saf,op_mob,android&stats=none"></iframe>
+<p><img alt="" src="../img/namevalue-storage.png"></img></p>
+
+<p><strong>NOTE:</strong> If you aren&#39;t already using <a href="http://caniuse.com/">caniuse.com</a> you should be - it&#39;s great!</p>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Things to Consider: Security</h2>
 
 <p>Use of Web Storage objects are regulated by the <a href="https://developer.mozilla.org/en/Same_origin_policy_for_JavaScript)">same origin policy</a>.</p>
@@ -256,7 +250,7 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Things to Consider: Quota</h2>
 
 <p>It&#39;s important to remember that browser vendors <em>generally</em> like to protect their users, and for this reason some sensible limits are placed on how much data can be injected into Web Storage containers.</p>
@@ -270,29 +264,33 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Potential Use Cases</h2>
 
-<ul><li>Storing user preferences for a web application client-side.</li><li>Caching image data for photo galleries or maps, etc.</li><li><p>Implementing intelligent resource loading and caching for scripts / css, etc as an alternative to using <a href="http://dev.w3.org/html5/spec/offline.html">HTML5 offline storage / AppCache</a>.</p><p>This is something I&#39;m planning to <a href="https://github.com/DamonOehlman/localo">investigate</a>.</p></li></ul>
+<p>There are many potential use cases for using Web Storage in your web applications and sites:</p>
+
+<ul><li>Storing user preferences for a web application client-side.</li><li>Caching image data for photo galleries or maps, etc (<em>remember quotas though...</em>).</li><li><p>Implementing intelligent resource loading and caching for scripts / css, etc as an alternative to using <a href="http://dev.w3.org/html5/spec/offline.html">HTML5 offline storage / AppCache</a>.</p><p>This is something I&#39;m planning to <a href="https://github.com/DamonOehlman/localo">investigate</a>.</p></li></ul>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>More Information</h2>
+
+<p>For more information on Web Storage, check out the following links:</p>
 
 <ul><li><p><a href="http://hacks.mozilla.org/2012/02/saving-images-and-files-in-localstorage/">Saving images and files in localStorage</a></p></li><li><p><a href="http://client-side-storage.appspot.com/">Client-side Storage Presentation</a> by <a href="http://twitter.com/pamelafox">Pamela Fox</a> - contains some great real world examples of where localStorage is being used.</p></li></ul>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h1>Web SQL Database</h1>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Overview</h2>
 
 <p><strong>WebSQL is dead! Long live WebSQL!</strong></p>
@@ -304,7 +302,7 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Overview (cont.)</h2>
 
 <p>While WebSQL is a powerful spec, IMO it is not a good fit for the browser environment.  So I&#39;m glad that the W3C recommend <strong>against</strong> using it.  </p>
@@ -314,7 +312,7 @@ console.log(localStorage.activeUser);
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Opening a Database</h2>
 
 <p>When working with WebSQL we need to open a database before we can use it.  This is done through the <code>openDatabase</code> function.</p>
@@ -331,7 +329,7 @@ var db = openDatabase(
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>On Database Creation</h2>
 
 <p>When a database is created (didn&#39;t exist prior to the <code>openDatabase</code> call) an initialization function will be called.</p>
@@ -352,13 +350,13 @@ var db = openDatabase(
 
 </section>
 
-<section class="slide" data-bg="../img/1152142_76778553.jpg"data-attribution="http://www.sxc.hu/photo/1152142">
+<section data-bg="../img/1152142_76778553.jpg"data-attribution="http://www.sxc.hu/photo/1152142">
 	<h1>So Bored!</h1>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>WebSQL target audience</h2>
 
 <p>I could go on to show you retrieving records, updating data, etc, etc. but in truth I&#39;d probably fall asleep just talking about it.</p>
@@ -368,17 +366,19 @@ var db = openDatabase(
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Can I Use WebSQL?</h2>
 
-<iframe scrolling="no" height="300px" width="100%" src="http://caniuse.com/sql-storage/embed/eras=-2,2&agents=desktop,ios_saf,op_mob,android&stats=none"></iframe>
+<p>So what is <a href="http://caniuse.com/#feat=sql-storage">browser support</a> like for Web SQL Database?</p>
+
+<p><img alt="" src="../img/sql-storage.png"></img></p>
 
 <p>So on some browsers, yes, but the question is - <strong>do you really want to</strong>?</p>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>More Information</h2>
 
 <p>More information (should you want to know) can be found on WebSQL in the following articles:</p>
@@ -388,13 +388,13 @@ var db = openDatabase(
 
 </section>
 
-<section class="slide" >
+<section >
 	<h1>IndexedDB</h1>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Overview</h2>
 
 <p>The <a href="http://www.w3.org/TR/IndexedDB/">Indexed Database API</a> is a great looking spec.  While it&#39;s still early days at the moment, the approach shows a lot of promise for working with larger client side datasets.</p>
@@ -408,7 +408,7 @@ var db = openDatabase(
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Opening a DB</h2>
 
 <p>Opening a database is reasonably simple, and is done through making an open database request:</p>
@@ -430,7 +430,7 @@ request.onfailure = function(e) {}; // TODO: handle errors</pre></code>
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Creating an Object Store</h2>
 
 <p>While opening the database was simple enough, things start to go downhill a little from here.  Before we can add objects to our database we need to create an object store using a <code>db.createObjectStore</code> call.</p>
@@ -451,19 +451,19 @@ request.onfailure = function(e) {}; // TODO: handle errors</pre></code>
 
 </section>
 
-<section class="slide" data-bg="../img/468245_79094304.jpg"data-attribution="http://www.sxc.hu/photo/468245">
+<section data-bg="../img/468245_79094304.jpg"data-attribution="http://www.sxc.hu/photo/468245">
 	<h1>Worth the Climb?</h1>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h1>Yes - but I&#39;ll spare you the boring bits.</h1>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Putting Objects in the Store</h2>
 
 <p>Eventually, after a few more calls to <code>transaction</code> and <code>objectStore</code> functions you can start to put things into your object store:</p>
@@ -482,7 +482,7 @@ request.onsuccess = function(e) {
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Retrieving Objects from the Store</h2>
 
 <p>Retrieving objects from an object store can be very simple.  If you are using it like the Web Storage API, a store supports <code>get</code> calls for retrieving an item matching the provided key value:</p>
@@ -499,10 +499,12 @@ request.onsuccess = function(e) {
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Can I Use IndexedDB</h2>
 
-<iframe scrolling="no" height="300px" width="100%" src="http://caniuse.com/indexeddb/embed/eras=-2,2&agents=desktop,ios_saf,op_mob,android&stats=none"></iframe>
+<p>So your feeling brave?  Let&#39;s see <a href="http://caniuse.com/#feat=indexeddb">which browsers support</a> IndexedDB.</p>
+
+<p><img alt="" src="../img/indexeddb.png"></img></p>
 
 <p><strong>Desktop browsers</strong>: maybe, if your apps are experimental or for a narrow audience.</p>
 
@@ -511,7 +513,7 @@ request.onsuccess = function(e) {
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>More Information</h2>
 
 <p>More information on IndexedDB can be found at the following locations:</p>
@@ -521,13 +523,13 @@ request.onsuccess = function(e) {
 
 </section>
 
-<section class="slide" >
+<section >
 	<h1>Wrapper Libraries</h1>
 
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Overview</h2>
 
 <p>If you felt a little overwhelmed by the different specs, then you are not alone and thankfully some kind developers are making an effort to make all of these APIs simpler to work with.</p>
@@ -537,7 +539,7 @@ request.onsuccess = function(e) {
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Lawnchair</h2>
 
 <p><a href="http://twitter.com/brianleroux">Brian LeRoux&#39;s</a> <a href="http://westcoastlogic.com/lawnchair/">lawnchair project</a> does a great job at providing a common interface to all of the storage APIs covered today (and more).</p>
@@ -556,7 +558,7 @@ new Lawnchair(function() {
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Sticky</h2>
 
 <p><a href="https://github.com/alexmng/sticky">Sticky</a> is brought to us by <a href="https://github.com/alexmng">Alex Mingoia</a> and provides a unified Web Storage like interface to the storage APIs covered today.</p>
@@ -574,7 +576,7 @@ store.remove('color');</pre></code>
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>lscache</h2>
 
 <p>The last of the wrapper projects that will be looked at today is from <a href="http://twitter.com/pamelafox">Pamela Fox</a> and focuses on providing a really useful interface for caching using localStorage.</p>
@@ -589,7 +591,7 @@ lscache.set('greeting', 'Hello World!', 2);</pre></code>
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>On Art and HTML5 Storage</h2>
 
 <p>I titled this talk <strong>the art of HTML5 storage</strong> because after going back through technologies like Web Storage and Web SQL, and becoming familiar with new standards such as IndexedDB I could see a parallel with different types of art.</p>
@@ -601,7 +603,7 @@ lscache.set('greeting', 'Hello World!', 2);</pre></code>
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Web Storage</h2>
 
 <p>The Web Storage API feels simple and accessible.  It is something that can generally be appreciated by all, even though some will turn their nose up at it.</p>
@@ -609,7 +611,7 @@ lscache.set('greeting', 'Hello World!', 2);</pre></code>
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>Web SQL</h2>
 
 <p>The Web SQL standard is something that some of use thought was a good idea at the time, but looking back is something that we know was a bit of a mistake.</p>
@@ -619,7 +621,7 @@ lscache.set('greeting', 'Hello World!', 2);</pre></code>
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>IndexedDB</h2>
 
 <p>IndexedDB is a new exploratory area which in it&#39;s current form is not going to be everyone&#39;s tastes.  I find myself looking at it&#39;s implementation in a similar way I feel confused by more progressive impressionist artists (such as <a href="http://en.wikipedia.org/wiki/Picasso)">Picasso</a> works.</p>
@@ -629,7 +631,7 @@ lscache.set('greeting', 'Hello World!', 2);</pre></code>
 
 </section>
 
-<section class="slide" >
+<section >
 	<h2>In Summary</h2>
 
 <p>I&#39;d generally recommend exploring the Web Storage API given its strong implementation across modern browsers, and look at how it can be used to improve the speed / usability of your applications and sites.</p>
@@ -639,22 +641,31 @@ lscache.set('greeting', 'Hello World!', 2);</pre></code>
 
 </section>
 
+<section >
+	<h2>Got Questions?</h2>
+
+<p>Feel free to ask them now, or:</p>
+
+<ul><li>Hit me up on twitter: <a href="http://twitter.com/DamonOehlman">@DamonOehlman</a></li><li>Shoot me an email: damon.oehlman -at- sidelab.com</li></ul>
+
+<p>This presentation is available online at:</p>
+
+<p><a href="http://speakerdeck.com/u/damonoehlman/p/the-art-of-html5-storage">http://speakerdeck.com/u/damonoehlman/p/the-art-of-html5-storage</a></p>
+
+<p>And in it&#39;s source form at:</p>
+
+<p><a href="https://github.com/DamonOehlman/talk-html5-storage">https://github.com/DamonOehlman/talk-html5-storage</a></p>
+
+
+</section>
+
+<section >
 	
-<!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
 
-<!-- Update these paths to point to the correct files. -->
+
+</section>
+
 <script src="js/jquery.min.js"></script>
-<script src="js/deck.core.js"></script>
-
-<!-- Add any other extension JS files here -->
-
-
-<!-- Initialize the deck. You can put this in an external file if desired. -->
-<script>
-	$(function() {
-		$.deck('.slide');
-	});
-</script>
-<script src="js/deck.hash.js"></script><script src="js/pres.js"></script><script src="js/highlight.js"></script><script>hljs.initHighlightingOnLoad();</script><link rel="stylesheet" type="text/css" href="css/highlight.default.css" /><script src="js/highlight-javascript.js"></script>
+<script src="js/pres.js"></script><script src="js/highlight.js"></script><script>hljs.initHighlightingOnLoad();</script><link rel="stylesheet" type="text/css" href="css/highlight.zenburn.css" /><script src="js/highlight-javascript.js"></script>
 </body>
 </html>

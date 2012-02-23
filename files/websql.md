@@ -54,7 +54,9 @@ If you are interested in WebSQL though, then feel free to hit me up afterwards a
 
 ## Can I Use WebSQL?
 
-[[caniuse sql-storage]]
+So what is [browser support](http://caniuse.com/#feat=sql-storage) like for Web SQL Database?
+
+![](../img/sql-storage.png)
 
 So on some browsers, yes, but the question is - __do you really want to__?
 

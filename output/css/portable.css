@@ -1,0 +1,201 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  display: block;
+}
+@page {
+  margin: 0px;
+}
+html {
+  margin: 0px auto;
+}
+.portable section {
+  page-break-after: always;
+  height: 625px;
+  position: relative;
+  padding: 25px;
+  overflow: hidden;
+}
+.portable section > p,
+.portable section pre,
+.portable section ul,
+.portable section blockquote {
+  font-size: 1.5em;
+}
+.portable h1 {
+  text-align: center;
+  font-size: 4.5em;
+  margin: 0 35px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  -moz-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.portable h2 {
+  font-size: 2.25em;
+  font-weight: bold;
+  padding-top: 0.5em;
+  margin: 0 0 0.66666em 0;
+}
+.portable h3 {
+  font-size: 1.4375em;
+  font-weight: bold;
+  margin-bottom: 0.30435em;
+}
+.portable p,
+.portable blockquote,
+.portable pre,
+.portable ul {
+  margin-bottom: 0.7em;
+  line-height: 1.3em;
+}
+.portable blockquote {
+  padding: 0 2em;
+  border-left: 1px solid #333;
+}
+.portable strong,
+.portable b {
+  font-weight: bold;
+}
+.portable em,
+.portable i {
+  font-style: italic;
+}
+.portable pre,
+.portable code {
+  font-family: monospace;
+  overflow: hidden;
+}
+.portable pre > code {
+  padding: 15px;
+}
+@media screen {
+  .portable section {
+    border-bottom: 1px solid #000;
+  }
+}
+@media screen and (max-width: 600px) {
+  .portable section {
+    height: auto;
+  }
+  .portable h1 {
+    position: relative;
+    top: 0;
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    transform: translate(0);
+    margin: 0 10px;
+    font-size: 3em;
+  }
+  .portable img {
+    max-width: 100%;
+  }
+}

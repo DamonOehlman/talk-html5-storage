@@ -1,0 +1,3 @@
+# The Art of HTML5 Storage
+
+This is a high level presentation covering 3 of the data-centric HTML5 client-side storage APIs. The talk was given to the Brisbane Web Development group which is made up of a diverse group of people (coders, designers, business owners). So while there is some code in the presentation, it's pretty easy going...

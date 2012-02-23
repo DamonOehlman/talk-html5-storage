@@ -1,0 +1,36 @@
+body {
+  background: #333;
+  color: #fff;
+  font-family: Helvetica;
+}
+.portable a {
+  color: #f8f8f8;
+  text-decoration: none;
+  border-bottom: 1px dashed #f8f8f8;
+}
+.portable a:visited {
+  color: #f8f8f8;
+}
+.portable h2 {
+  border-bottom: 2px solid #e8e8e8;
+  padding-bottom: 4px;
+}
+.portable ul {
+  list-style: square;
+  margin-left: 28px;
+}
+.portable pre {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.portable pre code {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.portable blockquote {
+  color: #ccc;
+  border-left: 2px solid #bbb;
+  font-style: italic;
+}

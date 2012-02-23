@@ -1,5 +1,5 @@
 $(function() {
-    $('.slide[data-bg]').each(function() {
+    $('section[data-bg]').each(function() {
         var el = $(this),
             bgImage = el.data('bg') || el.attr('data-bg');
         

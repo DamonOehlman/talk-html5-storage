@@ -65,7 +65,9 @@ Iterating over the contents of the store requires a [cursor](http://www.w3.org/T
 
 ## Can I Use IndexedDB
 
-[[caniuse indexeddb]]
+So your feeling brave?  Let's see [which browsers support](http://caniuse.com/#feat=indexeddb) IndexedDB.
+
+![](../img/indexeddb.png)
 
 __Desktop browsers__: maybe, if your apps are experimental or for a narrow audience.
 

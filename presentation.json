@@ -1,30 +1,36 @@
 {
-    "title": "Web Storage 3 Ways",
-    "template": "github://DamonOehlman/packing-instructions/deck.js",
+    "title": "The Art of HTML5 Storage",
+    "template": "/development/projects/DamonOehlman/packing-instructions/portable",
     "sources": [
         "files/intro.md",
         "files/webstorage.md",
         "files/websql.md",
         "files/indexeddb.md",
         "files/wrappers.md",
-        "files/art.md"
+        "files/art.md",
+        "files/outro.md"
     ],
     
     "includes": {
         "head": [
-            "css/swiss.css",
-            "css/deck.hash.css",
             "css/pres.style.css"
         ],
         
         "body": [
-            "js/deck.hash.js",
             "js/pres.js"
         ]
     },
     
+    "theme": "dark",
+    
     "aliases": {
         "deck": "github://imakewebthings/deck.js"
+    },
+    
+    "plugins": {
+        "code": {
+            "style": "zenburn"
+        }
     },
     
     "resources": [

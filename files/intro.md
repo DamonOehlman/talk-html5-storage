@@ -6,7 +6,7 @@
 
 Within the HTML5 spec suite there are a number of options for working with client-side data.  Knowing which one to use, and how to use it can be confusing.
 
-This presentation is an attempt to make things less confusing - for myself mainly :)
+This presentation is an attempt to make things less confusing.
 
 ----
 
@@ -53,7 +53,6 @@ Today we are going to be focusing on the first three client side storage options
 
 - presenting simple usage examples
 - some potential use cases
-- pros and cons
-- production readiness
+- API production readiness
 
 We won't be covering cookies in the context of this talk, but they are still an option should you wish to use them. __Personally, I would rather not.__

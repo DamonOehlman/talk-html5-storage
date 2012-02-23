@@ -94,9 +94,11 @@ In addition to the `localStorage` object we also have a `sessionStorage` object 
 
 ## Can I Use Web Storage?
 
-Let's have a look at what the browser support is like for the web storage spec:
+Let's have a look at what the [browser support](http://caniuse.com/#feat=namevalue-storage) is like for the web storage spec:
 
-[[caniuse namevalue-storage]]
+![](../img/namevalue-storage.png)
+
+__NOTE:__ If you aren't already using [caniuse.com](http://caniuse.com/) you should be - it's great!
 
 ---
 
@@ -128,8 +130,10 @@ It also varies from device to device, browser to browser.
 
 ## Potential Use Cases
 
+There are many potential use cases for using Web Storage in your web applications and sites:
+
 - Storing user preferences for a web application client-side.
-- Caching image data for photo galleries or maps, etc.
+- Caching image data for photo galleries or maps, etc (_remember quotas though..._).
 - Implementing intelligent resource loading and caching for scripts / css, etc as an alternative to using [HTML5 offline storage / AppCache](http://dev.w3.org/html5/spec/offline.html).
 
     This is something I'm planning to [investigate](https://github.com/DamonOehlman/localo).
@@ -137,6 +141,8 @@ It also varies from device to device, browser to browser.
 ---
 
 ## More Information
+
+For more information on Web Storage, check out the following links:
 
 - [Saving images and files in localStorage](http://hacks.mozilla.org/2012/02/saving-images-and-files-in-localstorage/)
 
